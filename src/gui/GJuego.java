@@ -30,6 +30,7 @@ public class GJuego extends javax.swing.JFrame {
     private Cuadricula cuadricula;
     private GameEngine motor;
     private byte jugadorActivo = 1;
+    private boolean terminado = false;
     public GJuego() {
         initComponents();
         this.cuadricula = new Cuadricula();
@@ -189,45 +190,47 @@ public class GJuego extends javax.swing.JFrame {
 
     private void columna1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna1MouseClicked
         // TODO add your handling code here:
-        byte celda = cuadricula.ultimaVacia((byte)0);
-        cuadricula.insertarFicha(celda, (byte)0, (byte)jugadorActivo);
-        this.cambiarFicha((byte)jugadorActivo, celda, 0);
-        if(motor.ComprobarGanador(jugadorActivo)){
-            JOptionPane.showMessageDialog(null, "Ganador: ");
-          }
-        if(jugadorActivo==1)
-            jugadorActivo=2;
-        else
-            jugadorActivo=1;
+        //byte celda = cuadricula.ultimaVacia((byte)0);
+        //cuadricula.insertarFicha(celda, (byte)0, (byte)jugadorActivo);
+        //this.cambiarFicha((byte)jugadorActivo, celda, 0);
+        if(terminado == false)
+        this.setFicha((byte)0, jugadorActivo);
+        
     }//GEN-LAST:event_columna1MouseClicked
 
     private void columna2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna2MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)1,jugadorActivo);
     }//GEN-LAST:event_columna2MouseClicked
 
     private void columna3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna3MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)2, jugadorActivo);
     }//GEN-LAST:event_columna3MouseClicked
 
     private void columna4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna4MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)3, jugadorActivo);
     }//GEN-LAST:event_columna4MouseClicked
 
     private void columna5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna5MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)4, jugadorActivo);
     }//GEN-LAST:event_columna5MouseClicked
 
     private void columna6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna6MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)5, jugadorActivo);
     }//GEN-LAST:event_columna6MouseClicked
 
     private void columna7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_columna7MouseClicked
         // TODO add your handling code here:
+        if(terminado == false)
         this.setFicha((byte)6, jugadorActivo);
     }//GEN-LAST:event_columna7MouseClicked
 
@@ -245,11 +248,12 @@ public class GJuego extends javax.swing.JFrame {
     private void setFicha(byte columna,byte jugador){
         byte celda = cuadricula.ultimaVacia((byte)columna);
         cuadricula.insertarFicha(celda, (byte)columna, (byte)jugador);
-        this.cambiarFicha((byte)jugador, celda, columna);
-        if(motor.ComprobarGanador(jugador)){
+        this.cambiarFicha((byte)jugadorActivo, celda, columna);
+        if(motor.ComprobarGanador(jugadorActivo)){
+            terminado = true;
             JOptionPane.showMessageDialog(null, "Ganador: Jugador " + jugador);
           }
-        if(jugador==1)
+        if(jugadorActivo==1)
             jugadorActivo=2;
         else
             jugadorActivo=1;

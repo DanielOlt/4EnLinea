@@ -139,19 +139,32 @@ public class GameEngine {
     public boolean invDiagonalPrin(byte color){
         boolean resp=false;
         int fichas=0;
-        for(int i=5;i>=0;i--){
-            if(cpCuadricula[i][5-i]==color){
+//        for(int i=5;i>=0;i--){
+//            if(cpCuadricula[i][5-i]==color){
+//                fichas++;
+//                if(fichas>=4){
+//                    
+//                    resp=true;
+//                    break;
+//                }
+//                
+//                
+//            }else
+//                fichas=0;
+//            
+//        }
+        int p = 2;
+        for (int i = 0; i < 4; i++) {
+            if (cpCuadricula[p][p-2]==color) {
                 fichas++;
-                if(fichas>=4){
-                    
-                    resp=true;
+                if (fichas>=4) {
+                    resp = true;
                     break;
                 }
-                
-                
-            }else
-                fichas=0;
-            
+            }else{
+                fichas = 0;
+            }
+            p++;
         }
         return resp;
     }
@@ -163,6 +176,7 @@ public class GameEngine {
             for(int i=veces;i<6;i++){
                 if(cpCuadricula[i][c--]==color){
                     fichas++;
+                    //System.out.print("["+i + "," + (c+1) + "] ");
                     if(fichas>=4){
                         resp=true;                        
                         break;
